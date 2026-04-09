@@ -123,10 +123,17 @@ export const PLAN_APPLY_AGENT: BuiltInAgentDefinition = {
     EXIT_PLAN_MODE_TOOL_NAME,
     NOTEBOOK_EDIT_TOOL_NAME,
   ],
+  tools:[
+    "AskUserQuestion",
+    "Agent",
+    "Read",
+    "Write",
+    "Edit",
+    "TodoWrite",
+  ],
   source: 'built-in',
   baseDir: 'built-in',
   model: 'inherit',
   omitClaudeMd: false,
-  isolation: 'worktree',
   getSystemPrompt: () => getPlanApplySystemPrompt(),
 }
