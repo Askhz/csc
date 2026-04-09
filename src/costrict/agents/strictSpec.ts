@@ -31,8 +31,8 @@ function getStrictSpecSystemPrompt(): string {
    - 用 \`Agent\` 工具启动 \`TaskPlan\`（subagent_type: "TaskPlan"）
    - prompt参数输入：用户原始输入{user_input}
 
-4. **方案执行阶段** (PlanManager模式)
-   - 用 \`Agent\` 工具启动 \`PlanManager\`（subagent_type: "PlanManager"）
+4. **方案执行阶段** (SpecPlan模式)
+   - 用 \`Agent\` 工具启动 \`SpecPlan\`（subagent_type: "SpecPlan"）
    - prompt参数输入：用户原始输入{user_input}
 
 

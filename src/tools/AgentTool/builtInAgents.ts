@@ -4,7 +4,6 @@ import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/gr
 import { isEnvTruthy } from '../../utils/envUtils.js'
 import { DESIGN_AGENT } from '../../costrict/agents/designAgent.js'
 import { PLAN_APPLY_AGENT } from '../../costrict/agents/planApply.js'
-import { PLAN_MANAGER_AGENT } from '../../costrict/agents/planManager.js'
 import { QUICK_EXPLORE_AGENT } from '../../costrict/agents/quickExplore.js'
 import { REQUIREMENT_AGENT } from '../../costrict/agents/requirement.js'
 import { SPEC_PLAN_AGENT } from '../../costrict/agents/specPlan.js'
@@ -65,12 +64,11 @@ export function getBuiltInAgents(): AgentDefinition[] {
     GENERAL_PURPOSE_AGENT,
     STATUSLINE_SETUP_AGENT,
     PLAN_AGENT,
-    // StrictSpec workflow: full 4-stage pipeline (Requirement → DesignAgent → TaskPlan → PlanManager)
+    // StrictSpec workflow: full 4-stage pipeline (Requirement → DesignAgent → TaskPlan → SpecPlan)
     STRICT_SPEC_AGENT,
     REQUIREMENT_AGENT,
     DESIGN_AGENT,
     TASK_PLAN_AGENT,
-    PLAN_MANAGER_AGENT,
     SPEC_PLAN_AGENT,
     // StrictPlan workflow: lightweight plan → implement pipeline
     STRICT_PLAN_AGENT,
