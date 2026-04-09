@@ -2,16 +2,15 @@ import { feature } from 'bun:bundle'
 import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
 import { isEnvTruthy } from '../../utils/envUtils.js'
+import { PLAN_APPLY_AGENT } from '../../costrict/agents/planApply.js'
+import { STRICT_PLAN_AGENT } from '../../costrict/agents/strictPlan.js'
+import { SUB_CODING_AGENT } from '../../costrict/agents/subCoding.js'
+import { TASK_CHECK_AGENT } from '../../costrict/agents/taskCheck.js'
+import { QUICK_EXPLORE_AGENT } from '../../costrict/agents/quickExplore.js'
 import { CLAUDE_CODE_GUIDE_AGENT } from './built-in/claudeCodeGuideAgent.js'
 import { EXPLORE_AGENT } from './built-in/exploreAgent.js'
 import { GENERAL_PURPOSE_AGENT } from './built-in/generalPurposeAgent.js'
 import { PLAN_AGENT } from './built-in/planAgent.js'
-import { PLAN_APPLY_AGENT } from './built-in/costrict/planApply.js'
-import { QUICK_EXPLORE_AGENT } from './built-in/costrict/quickExplore.js'
-import { REVIEW_AND_FIX_AGENT } from './built-in/costrict/reviewAndFix.js'
-import { STRICT_PLAN_AGENT } from './built-in/costrict/strictPlan.js'
-import { SUB_CODING_AGENT } from './built-in/costrict/subCoding.js'
-import { TASK_CHECK_AGENT } from './built-in/costrict/taskCheck.js'
 import { WIKI_PROJECT_ANALYZE_AGENT } from '../../costrict/agent/wikiProjectAnalyze.js'
 import { WIKI_CATALOGUE_DESIGN_AGENT } from '../../costrict/agent/wikiCatalogueDesign.js'
 import { WIKI_DOCUMENT_GENERATE_AGENT } from '../../costrict/agent/wikiDocumentGenerate.js'
@@ -55,6 +54,12 @@ export function getBuiltInAgents(): AgentDefinition[] {
   const agents: AgentDefinition[] = [
     GENERAL_PURPOSE_AGENT,
     STATUSLINE_SETUP_AGENT,
+    PLAN_AGENT,
+    STRICT_PLAN_AGENT,
+    PLAN_APPLY_AGENT,
+    SUB_CODING_AGENT,
+    TASK_CHECK_AGENT,
+    QUICK_EXPLORE_AGENT,
     WIKI_PROJECT_ANALYZE_AGENT,
     WIKI_CATALOGUE_DESIGN_AGENT,
     WIKI_DOCUMENT_GENERATE_AGENT,
@@ -64,13 +69,6 @@ export function getBuiltInAgents(): AgentDefinition[] {
   if (areExplorePlanAgentsEnabled()) {
     agents.push(
       EXPLORE_AGENT,
-      PLAN_AGENT,
-      STRICT_PLAN_AGENT,
-      PLAN_APPLY_AGENT,
-      REVIEW_AND_FIX_AGENT,
-      QUICK_EXPLORE_AGENT,
-      SUB_CODING_AGENT,
-      TASK_CHECK_AGENT,
     )
   }
 

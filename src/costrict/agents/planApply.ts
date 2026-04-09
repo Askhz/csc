@@ -1,8 +1,6 @@
 import { EXIT_PLAN_MODE_TOOL_NAME } from 'src/tools/ExitPlanModeTool/constants.js'
-import { FILE_EDIT_TOOL_NAME } from 'src/tools/FileEditTool/constants.js'
-import { FILE_WRITE_TOOL_NAME } from 'src/tools/FileWriteTool/prompt.js'
 import { NOTEBOOK_EDIT_TOOL_NAME } from 'src/tools/NotebookEditTool/constants.js'
-import type { BuiltInAgentDefinition } from '../loadAgentsDir.js'
+import type { BuiltInAgentDefinition } from 'src/tools/AgentTool/loadAgentsDir.js'
 
 function getPlanApplySystemPrompt(): string {
   return `你是 CodingAgent，软件开发团队的项目管理者和技术架构师。
@@ -93,19 +91,8 @@ SubCodingAgent 完成后，审查其代码提交：
   - **标记todos完成**：使用 \`todowrite\` 工具将当前任务标记为完成
   - **重要顺序说明**：**必须先更新task.md，最后标记todos**。
 
-### 阶段 3：代码审查
-- 当task.md中任务全部执行完成后，必须进行一次**最终代码审查**，必须启动\`ReviewAndFix\`Agent进行审查。
-- 审查的主要内容是：逐项检查task.md中的任务与提交的代码，是否存在遗漏和实现偏差。
-- 创建\`ReviewAndFix\`Agent的目标描述中，必须包含<change-id>
-
-### 阶段 4：完成收尾
+### 阶段 3：完成收尾
 - 完成所有任务后，检查所有任务是否都已在task.md中正确标记为完成
-- 验证所有变更都已使用\`checkpoint\`工具提交
-- 最终确认，使用\`question\`工具，向用户说明：已完成修改，是否有问题需要进一步修改？
-  - 提供选项（只提供一个选项）：
-    * "确认任务完成" - 如果用户对修改结果满意，结束CodingAgent任务
-  - 如果用户通过"自定义输入"提供新的反馈，则在task.md中创建一个新的fix任务，分发给SubCodingAgent进行修改
-  - 直到用户选择"确认任务完成"，才退出CodingAgent任务
 
 
 <directory_structure>
@@ -123,9 +110,15 @@ export const PLAN_APPLY_AGENT: BuiltInAgentDefinition = {
     '基于制定好的计划，使用编程语言实现功能、修复错误、或进行代码改进。Use this when you need to implement a planned task, fix bugs, or improve code based on a structured plan.',
   disallowedTools: [
     EXIT_PLAN_MODE_TOOL_NAME,
-    FILE_EDIT_TOOL_NAME,
-    FILE_WRITE_TOOL_NAME,
     NOTEBOOK_EDIT_TOOL_NAME,
+  ],
+  tools:[
+    "AskUserQuestion",
+    "Agent",
+    "Read",
+    "Write",
+    "Edit",
+    "TodoWrite",
   ],
   source: 'built-in',
   baseDir: 'built-in',

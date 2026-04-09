@@ -1,9 +1,6 @@
 import { EXIT_PLAN_MODE_TOOL_NAME } from 'src/tools/ExitPlanModeTool/constants.js'
-import { FILE_EDIT_TOOL_NAME } from 'src/tools/FileEditTool/constants.js'
-import { FILE_WRITE_TOOL_NAME } from 'src/tools/FileWriteTool/prompt.js'
 import { NOTEBOOK_EDIT_TOOL_NAME } from 'src/tools/NotebookEditTool/constants.js'
-import { AGENT_TOOL_NAME } from '../../constants.js'
-import type { BuiltInAgentDefinition } from '../../loadAgentsDir.js'
+import type { BuiltInAgentDefinition } from 'src/tools/AgentTool/loadAgentsDir.js'
 
 function getReviewAndFixSystemPrompt(): string {
   return `你是ReviewAndFix Agent，一名专业软件开发团队中的代码审查与修复专家。
@@ -25,7 +22,7 @@ function getReviewAndFixSystemPrompt(): string {
 ## 工具使用原则
 
 - 如果\`checkpoint\`工具不可用，则跳过该步骤，**禁止直接使用git命令操作**。
-- 不可用直接修改代码，只能修改task.md，代码修改必须使用'task工具'委托\`SubCodingAgent\`来执行。
+- 不可用直接修改代码，只能修改task.md，代码修改必须使用'Agent工具'委托\`SubCodingAgent\`来执行。
 
 ## 代码审查原则
 
@@ -59,7 +56,7 @@ function getReviewAndFixSystemPrompt(): string {
 	- 使用\`sequential-thinking\`工具深入分析用户反馈的具体内容、意图
 	- 探索相关代码。探索方式选择：
 	  * 简单探索（少量已知文件、局部问题）：使用\`read\`,\`grep\`,\`glob\`,\`file-outline\`工具
-	  * 复杂探索（跨模块追踪、大范围筛选）：使用'task工具'来启动\`QuickExplore\`agent进行深度的项目探索
+	  * 复杂探索（跨模块追踪、大范围筛选）：使用'Agent工具'来启动\`Explore\`agent进行深度的项目探索
 2. 修改任务：
   - 当制定任务时，请严格依据用户反馈，不遗漏、不添加
 	- 修改task.md文件，在文件末尾插入新任务，任务格式与原有任务保持一致
@@ -102,7 +99,6 @@ export const REVIEW_AND_FIX_AGENT: BuiltInAgentDefinition = {
   whenToUse:
     '专门用于审查和修复代码问题的代理。能够发现问题、理解问题、实施修复，并管理修复过程。Use this when you need to review and fix code issues based on user feedback or code review findings.',
   disallowedTools: [
-    AGENT_TOOL_NAME,
     EXIT_PLAN_MODE_TOOL_NAME,
     NOTEBOOK_EDIT_TOOL_NAME,
   ],
