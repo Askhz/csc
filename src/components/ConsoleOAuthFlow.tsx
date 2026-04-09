@@ -289,7 +289,7 @@ export function ConsoleOAuthFlow({
         setOAuthStatus({ state: 'success' })
         void sendNotification(
           {
-            message: 'Claude Code login successful',
+            message: 'CoStrict login successful',
             notificationType: 'auth_success',
           },
           terminal,
@@ -458,7 +458,7 @@ function OAuthStatusMessage({
           <Text bold>
             {startingMessage
               ? startingMessage
-              : `Claude Code can be used with your Claude subscription or billed based on API usage through your Console account.`}
+              : `CoStrict can be used with your Claude subscription or billed based on API usage through your Console account.`}
           </Text>
 
           <Text>Select login method:</Text>
@@ -1412,9 +1412,9 @@ function OAuthStatusMessage({
 
           <Box flexDirection="column" gap={1}>
             <Text>
-              Claude Code supports Amazon Bedrock, Microsoft Foundry, and Vertex
-              AI. Set the required environment variables, then restart Claude
-              Code.
+              CoStrict supports Amazon Bedrock, Microsoft Foundry, and Vertex
+              AI. Set the required environment variables, then restart
+              CoStrict.
             </Text>
 
             <Text>
@@ -1426,20 +1426,20 @@ function OAuthStatusMessage({
               <Text bold>Documentation:</Text>
               <Text>
                 · Amazon Bedrock:{' '}
-                <Link url="https://code.claude.com/docs/en/amazon-bedrock">
-                  https://code.claude.com/docs/en/amazon-bedrock
+                <Link url="https://costrict.ai/docs/en/amazon-bedrock">
+                  https://costrict.ai/docs/en/amazon-bedrock
                 </Link>
               </Text>
               <Text>
                 · Microsoft Foundry:{' '}
-                <Link url="https://code.claude.com/docs/en/microsoft-foundry">
-                  https://code.claude.com/docs/en/microsoft-foundry
+                <Link url="https://costrict.ai/docs/en/microsoft-foundry">
+                  https://costrict.ai/docs/en/microsoft-foundry
                 </Link>
               </Text>
               <Text>
                 · Vertex AI:{' '}
-                <Link url="https://code.claude.com/docs/en/google-vertex-ai">
-                  https://code.claude.com/docs/en/google-vertex-ai
+                <Link url="https://costrict.ai/docs/en/google-vertex-ai">
+                  https://costrict.ai/docs/en/google-vertex-ai
                 </Link>
               </Text>
             </Box>
@@ -1493,7 +1493,7 @@ function OAuthStatusMessage({
         <Box flexDirection="column" gap={1}>
           <Box>
             <Spinner />
-            <Text>Creating API key for Claude Code…</Text>
+            <Text>Creating API key for CoStrict…</Text>
           </Box>
         </Box>
       )
