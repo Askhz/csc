@@ -1,5 +1,6 @@
 import { feature } from 'bun:bundle'
 import { shouldAutoEnableClaudeInChrome } from 'src/utils/claudeInChrome/setup.js'
+import { registerCodeReviewSecuritySkill } from 'src/costrict/skill/codeReviewSecurity.js'
 import { registerBatchSkill } from './batch.js'
 import { registerClaudeInChromeSkill } from './claudeInChrome.js'
 import { registerDebugSkill } from './debug.js'
@@ -27,6 +28,7 @@ import { registerTddSkill } from './tdd.js'
  * 3. Import and call that function here
  */
 export function initBundledSkills(): void {
+  registerCodeReviewSecuritySkill()
   registerUpdateConfigSkill()
   registerProjectWikiSkill()
   registerTddSkill()
