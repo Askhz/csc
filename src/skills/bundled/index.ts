@@ -15,6 +15,7 @@ import { registerLoopSkill } from './loop.js'
 import { registerDreamSkill } from './dream.js'
 import { registerUpdateConfigSkill } from './updateConfig.js'
 import { registerVerifySkill } from './verify.js'
+import { registerStrictPlanSkill } from '../../costrict/skill/strictPlan.js'
 import { registerProjectWikiSkill } from 'src/costrict/skill/projectWiki.js'
 import { registerTddSkill } from 'src/costrict/skill/tdd.js'
 
@@ -32,6 +33,7 @@ export function initBundledSkills(): void {
   registerUpdateConfigSkill()
   registerProjectWikiSkill()
   registerTddSkill()
+  registerStrictPlanSkill()
   registerKeybindingsSkill()
   registerVerifySkill()
   registerDebugSkill()
