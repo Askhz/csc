@@ -1324,7 +1324,7 @@ async function run(): Promise<CommanderCommand> {
 		// Fails open - if fetch fails, continues without remote settings
 		// Settings are applied via hot-reload when they arrive
 		// Must happen after init() to ensure config reading is allowed
-		void loadRemoteManagedSettings();
+		// void loadRemoteManagedSettings();
 		void loadPolicyLimits();
 
 		profileCheckpoint("preAction_after_remote_settings");
@@ -3451,7 +3451,7 @@ async function run(): Promise<CommanderCommand> {
 				if (onboardingShown) {
 					// Refresh auth-dependent services now that the user has logged in during onboarding.
 					// Keep in sync with the post-login logic in src/commands/login.tsx
-					void refreshRemoteManagedSettings();
+					// void refreshRemoteManagedSettings();
 					void refreshPolicyLimits();
 					// Clear user data cache BEFORE GrowthBook refresh so it picks up fresh credentials
 					resetUserCache();

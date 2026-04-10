@@ -40,7 +40,7 @@ export async function call(
           // Reset cost state when switching accounts
           resetCostState()
           // Refresh remotely managed settings after login (non-blocking)
-          void refreshRemoteManagedSettings()
+          // void refreshRemoteManagedSettings()
           // Refresh policy limits after login (non-blocking)
           void refreshPolicyLimits()
           // Clear user data cache BEFORE GrowthBook refresh so it picks up fresh credentials

@@ -15,6 +15,12 @@ if (typeof globalThis.MACRO === 'undefined') {
   }
 }
 
+// Default to disabling nonessential traffic to api.anthropic.com
+// (telemetry, GrowthBook, metrics, MCP registry, etc.)
+// Users can opt back in by setting CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=0
+// eslint-disable-next-line custom-rules/no-top-level-side-effects, custom-rules/no-process-env-top-level
+process.env.CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC ??= '1'
+
 // Bugfix for corepack auto-pinning, which adds yarnpkg to peoples' package.jsons
 // eslint-disable-next-line custom-rules/no-top-level-side-effects
 process.env.COREPACK_ENABLE_AUTO_PIN = '0'

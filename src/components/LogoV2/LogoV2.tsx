@@ -150,7 +150,9 @@ export function LogoV2(): React.ReactNode {
       <>
         <CondensedLogo />
         <VoiceModeNotice />
+        {/* NOTE: Opus 1M merge notice disabled
         <Opus1mMergeNotice />
+        */}
         {ChannelsNoticeModule && <ChannelsNoticeModule.ChannelsNotice />}
         {isDebugMode() && (
           <Box paddingLeft={2} flexDirection="column">
@@ -251,7 +253,9 @@ export function LogoV2(): React.ReactNode {
           </Box>
         </OffscreenFreeze>
         <VoiceModeNotice />
+        {/* NOTE: Opus 1M merge notice disabled
         <Opus1mMergeNotice />
+        */}
         {ChannelsNoticeModule && <ChannelsNoticeModule.ChannelsNotice />}
         {showSandboxStatus && (
           <Box marginTop={1} flexDirection="column">
@@ -350,7 +354,9 @@ export function LogoV2(): React.ReactNode {
         </Box>
       </OffscreenFreeze>
       <VoiceModeNotice />
+      {/* NOTE: Opus 1M merge notice disabled
       <Opus1mMergeNotice />
+      */}
       {ChannelsNoticeModule && <ChannelsNoticeModule.ChannelsNotice />}
       {isDebugMode() && (
         <Box paddingLeft={2} flexDirection="column">

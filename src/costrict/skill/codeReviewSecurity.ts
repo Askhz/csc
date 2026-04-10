@@ -6,7 +6,7 @@ export function registerCodeReviewSecuritySkill(): void {
   const skillMd = files['SKILL.md'] ?? ''
 
   registerBundledSkill({
-    name: 'code-review-security',
+    name: 'strict-security-review',
     description: 'Systematic code security audit — identifies vulnerabilities like SQL injection, XSS, command injection, SSRF, etc.',
     whenToUse:
       'Use when the user requests a code audit, security audit, or vulnerability scan; or mentions /code-review-security, /audit, or wants a security check before deployment',
