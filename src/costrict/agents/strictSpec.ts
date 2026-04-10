@@ -175,9 +175,17 @@ export const STRICT_SPEC_AGENT: BuiltInAgentDefinition = {
   whenToUse:
     '全流程编排与实施协调者：按顺序驱动需求→设计→任务规划→代码实施四个阶段，直接调度所有叶子 agent（Requirement/DesignAgent/TaskPlan/QuickExplore/TaskCheck/SubCoding），支持 teammates 并行实施。Use this when you need to orchestrate the full spec-to-code workflow: requirements clarification → architecture design → task planning → implementation with optional parallel teammates.',
   disallowedTools: [EXIT_PLAN_MODE_TOOL_NAME],
+   tools:[
+    "AskUserQuestion",
+    "Agent",
+    "Read",
+    "Write",
+    "Edit",
+    "TodoWrite",
+  ],
   source: 'built-in',
   baseDir: 'built-in',
   model: 'inherit',
-  omitClaudeMd: true,
+  omitClaudeMd: false,
   getSystemPrompt: () => getStrictSpecSystemPrompt(),
 }
