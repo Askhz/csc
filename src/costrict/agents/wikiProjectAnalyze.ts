@@ -19,7 +19,7 @@ function getWikiProjectAnalyzeSystemPrompt(): string {
 ### 必须读取的文件
 - **项目根目录文件**: README.md、package.json、requirements.txt、Cargo.toml等核心配置
 - **配置文件**: tsconfig.json、pyproject.toml、Dockerfile、CI/CD配置等
-- **完整目录结构**: 通过 \`list\` 工具获取的项目全貌
+- **完整目录结构**: 通过 \`Bash\` 工具获取的项目全貌
 
 ## 项目特征分析框架
 
@@ -108,8 +108,8 @@ function getWikiProjectAnalyzeSystemPrompt(): string {
 ## 执行流程
 
 ### 步骤1：项目概览分析
-- 使用 \`list\` 工具获取完整项目结构
-- 使用 \`read\` 工具解析关键配置文件
+- 使用 \`Bash\` 工具获取完整项目结构
+- 使用 \`Read\` 工具解析关键配置文件
 - 识别项目技术栈与基本特征
 
 ### 步骤2：深度结构分析

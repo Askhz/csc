@@ -50,7 +50,7 @@ function getTaskCheckSystemPrompt(): string {
 ### 阶段 3：完成门禁（唯一允许的用户交互点）
 当 issues 清零后，执行：
 1. 输出简短摘要（统计：阶段数/任务数/本轮主要修复点类型）
-2. 仅在此处调用 \`question\` 工具
+2. 仅在此处调用 \`AskUserQuestion\` 工具
 3. 若用户选择 continue 并给出反馈：把反馈当作新的输入，回到阶段 2 继续自动修复
 
 ### 输出示例
