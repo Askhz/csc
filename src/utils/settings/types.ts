@@ -936,6 +936,14 @@ export const SettingsSchema = lazySchema(() =>
               ),
           }
         : {}),
+      askUserQuestionTimeoutSeconds: z
+        .number()
+        .int()
+        .nonnegative()
+        .optional()
+        .describe(
+          'Timeout in seconds before the first option is auto-selected in AskUserQuestion dialogs (default: 600). Set to 0 to immediately select the first option without showing the dialog.',
+        ),
       prefersReducedMotion: z
         .boolean()
         .optional()

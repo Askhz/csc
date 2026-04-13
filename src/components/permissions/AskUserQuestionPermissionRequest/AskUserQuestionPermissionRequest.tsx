@@ -6,6 +6,7 @@ import React, {
   Suspense,
   use,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -85,6 +86,7 @@ function AskUserQuestionPermissionRequestBody({
   // useMemo (which runs applyMarkdown over every preview) never hits its cache.
   // `toolUseConfirm.input` is stable for the dialog's lifetime (this tool
   // returns `behavior: 'ask'` directly and never goes through the classifier).
+  const settings = useSettings()
   const result = useMemo(
     () => AskUserQuestionTool.inputSchema.safeParse(toolUseConfirm.input),
     [toolUseConfirm.input],
@@ -426,6 +428,53 @@ Questions asked and answers provided:\n${questionsWithAnswers}`
     ],
   )
 
+  // Auto-select the first option for each unanswered question.
+  // Configurable via askUserQuestionTimeoutSeconds in .claude/settings.json (default: 600s / 10min).
+  // Set to 0 to immediately auto-select without showing the dialog.
+  const AUTO_SELECT_TIMEOUT_S = settings.askUserQuestionTimeoutSeconds ?? 600
+  const [autoSelectSecondsLeft, setAutoSelectSecondsLeft] = useState(AUTO_SELECT_TIMEOUT_S)
+
+  // When timeout is 0, immediately submit the first option for every question without showing UI.
+  useEffect(() => {
+    if (AUTO_SELECT_TIMEOUT_S !== 0) return
+    const autoAnswers: Record<string, string> = {}
+    for (const q of questions) {
+      if (q.options.length > 0) {
+        autoAnswers[q.question] = q.options[0]!.label
+      }
+    }
+    void submitAnswers(autoAnswers).catch(logError)
+    // Only run once on mount — questions and submitAnswers are stable for the dialog's lifetime.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (AUTO_SELECT_TIMEOUT_S === 0) return
+
+    setAutoSelectSecondsLeft(AUTO_SELECT_TIMEOUT_S)
+
+    const submitTimer = setTimeout(() => {
+      const autoAnswers: Record<string, string> = { ...answers }
+      for (const q of questions) {
+        if (!autoAnswers[q.question] && q.options.length > 0) {
+          autoAnswers[q.question] = q.options[0]!.label
+        }
+      }
+      void submitAnswers(autoAnswers).catch(logError)
+    }, AUTO_SELECT_TIMEOUT_S * 1000)
+
+    const countdownInterval = setInterval(() => {
+      setAutoSelectSecondsLeft(s => Math.max(0, s - 1))
+    }, 1000)
+
+    return () => {
+      clearTimeout(submitTimer)
+      clearInterval(countdownInterval)
+    }
+    // Reset the timer whenever the user provides an answer
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answers])
+
   const handleQuestionAnswer = useCallback(
     (
       questionText: string,
@@ -541,6 +590,7 @@ Questions asked and answers provided:\n${questionsWithAnswers}`
           onSubmit={nextQuestion}
           onTabPrev={handleTabPrev}
           onTabNext={handleTabNext}
+          autoSelectSecondsLeft={autoSelectSecondsLeft}
           onRespondToClaude={handleRespondToClaude}
           onFinishPlanInterview={handleFinishPlanInterview}
           onImagePaste={(base64, mediaType, filename, dims, path) =>
