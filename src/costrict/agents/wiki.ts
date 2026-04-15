@@ -207,7 +207,7 @@ function getWikiSystemPrompt(): string {
 export const WIKI_AGENT: BuiltInAgentDefinition = {
   agentType: 'WIKI',
   whenToUse:
-    '根据用户的需求创建具体可实施的计划。Use this when you need to create structured, actionable implementation plans based on user requirements. This agent follows a strict workflow: understand requirements → QuickExplore project → clarify requirements → create proposal → implement proposal.',
+    '为项目生成完整的技术文档体系，包括项目分析、文档结构设计、技术文档生成和索引文件创建。',
   tools:[
     "Agent(WikiCatalogueDesign,WikiDocumentGenerate,WikiIndexGeneration,WikiProjectAnalyze)",
     "Read",

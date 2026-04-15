@@ -17,7 +17,7 @@ export function registerProjectWikiSkill(): void {
         return [
           {
             type: 'text',
-            text: '请提供需要规划的需求描述。用法: /strict-project-wiki <需求描述>',
+            text: '请提供技术文档的需求描述。用法: /strict-project-wiki',
           },
         ]
       }

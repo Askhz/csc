@@ -11,7 +11,7 @@ export function registerStrictPlanSkill(): void {
     disableModelInvocation: true,
     allowedTools:[
     "AskUserQuestion",
-    "Agent",
+    "Agent(QuickExplore,TaskCheck,SubCoding)",
     "Read",
     "Write",
     "Edit",

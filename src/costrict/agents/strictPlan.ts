@@ -258,5 +258,6 @@ export const STRICT_PLAN_AGENT: BuiltInAgentDefinition = {
   // 通过斜杠命令从主线程启动时，使 resolveAgentTools 跳过 filterToolsForAgent，
   // 从而保留主线程完整工具集（包括 Agent 工具）。
   isMainThread: true,
+  visibleTo: ['None'],
   getSystemPrompt: () => getStrictPlanSystemPrompt(),
 }

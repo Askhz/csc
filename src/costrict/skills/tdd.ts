@@ -15,7 +15,7 @@ export function registerTddSkill(): void {
         return [
           {
             type: 'text',
-            text: '请提供需要规划的需求描述。用法: /strict-test <需求描述>',
+            text: '请提供需要测试描述。用法: /strict-test <需求描述>',
           },
         ]
       }

@@ -117,10 +117,10 @@ Start by confirming the user requirements, then proceed with test case generatio
 export const TDD_AGENT: BuiltInAgentDefinition = {
   agentType: 'TDD',
   whenToUse:
-    '根据用户的需求创建具体可实施的计划。Use this when you need to create structured, actionable implementation plans based on user requirements. This agent follows a strict workflow: understand requirements → QuickExplore project → clarify requirements → create proposal → implement proposal.',
+    'execute comprehensive testing workflow: confirm requirements, generate test cases, and execute tests with automated fixes',
   tools:[
     "AskUserQuestion",
-    "Agent(QuickExplore,TaskCheck,SubCoding)",
+    "Agent",
     "Read",
     "Write",
     "Edit",
