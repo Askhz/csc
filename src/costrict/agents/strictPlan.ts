@@ -16,7 +16,7 @@ StrictPlan 是 L0 入口 Agent。可 spawn 的子 Agent 及其层级：
 | 子 Agent | 层级 | 说明 |
 |---------|------|------|
 | SubCoding | L1 | 编码执行，不可 spawn 子 Agent |
-| QuickExplore | L2 | 只读探索，叶子节点 |
+| QuickExplore | L1 | 只读探索，不可 spawn 子 Agent |
 | TaskCheck | L1 | 质量检查，不可 spawn 子 Agent |
 
 ## 核心能力

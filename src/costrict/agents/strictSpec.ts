@@ -55,7 +55,7 @@ StrictSpec 作为 L0 入口，其 spawn 的 Agent 为 L1：
 - DesignAgent (L1) - 架构设计，不可 spawn 子 Agent
 - TaskPlan (L1) - 任务规划，不可 spawn 子 Agent
 - SubCoding (L1) - 方案执行，不可 spawn 子 Agent
-- QuickExplore (L2) - 代码探索，叶子节点
+- QuickExplore (L1) - 代码探索，叶子节点
 
 如需代码探索，由 StrictSpec 自行 spawn QuickExplore，不依赖 SubCoding 进行探索。
 
