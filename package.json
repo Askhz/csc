@@ -1,6 +1,6 @@
 {
   "name": "@costrict/csc",
-  "version": "4.0.4",
+  "version": "4.0.5",
 
   "description": "Reverse-engineered Anthropic Claude Code CLI — interactive AI coding assistant in the terminal",
   "type": "module",
