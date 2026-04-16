@@ -177,6 +177,60 @@
   },
   "hotPaths": [
     {
+      "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\project_bun_to_node_migration.md",
+      "accessCount": 7,
+      "lastAccessed": 1776310133168,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 5,
+      "lastAccessed": 1776309529820,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\project_version_milestones_4x.md",
+      "accessCount": 5,
+      "lastAccessed": 1776310132640,
+      "type": "file"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "accessCount": 4,
+      "lastAccessed": 1776310073300,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\feedback_changelog_merged_style.md",
+      "accessCount": 3,
+      "lastAccessed": 1776309698865,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\project_upstream_sync_conflict.md",
+      "accessCount": 2,
+      "lastAccessed": 1776308992853,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\feedback_direct_action_preference.md",
+      "accessCount": 2,
+      "lastAccessed": 1776309022748,
+      "type": "file"
+    },
+    {
+      "path": "scripts\\defines.ts",
+      "accessCount": 2,
+      "lastAccessed": 1776309529227,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\feedback_npm_auth_method.md",
+      "accessCount": 2,
+      "lastAccessed": 1776310104176,
+      "type": "file"
+    },
+    {
       "path": "src",
       "accessCount": 1,
       "lastAccessed": 1776228747216,
@@ -192,6 +246,18 @@
       "path": "C:\\Users\\SXF-Admin\\.claude\\projects\\D--source-codespace-geroge-costrict-repo-csc\\memory\\feedback_bun_install_in_session.md",
       "accessCount": 1,
       "lastAccessed": 1776229520323,
+      "type": "file"
+    },
+    {
+      "path": "scripts\\postinstall.cjs",
+      "accessCount": 1,
+      "lastAccessed": 1776309134829,
+      "type": "file"
+    },
+    {
+      "path": "src\\utils\\proxy.ts",
+      "accessCount": 1,
+      "lastAccessed": 1776309134873,
       "type": "file"
     }
   ],
