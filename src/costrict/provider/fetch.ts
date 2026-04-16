@@ -43,13 +43,8 @@ const VERSION = getVersion()
  * 3. 注入 Authorization 和 CoStrict 特有 headers
  * 4. 反应性 401 错误恢复（自动重试一次）
  */
-type CoStrictFetchFn = {
-  (input: RequestInfo | URL, init?: RequestInit): Promise<Response>
-  preconnect?: (url: string | URL) => void
-}
-
 export function createCoStrictFetch() {
-  const costrictFetch: CoStrictFetchFn = async (
+  const costrictFetch = async (
     input: RequestInfo | URL,
     init?: RequestInit,
   ) => {
