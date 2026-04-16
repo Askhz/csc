@@ -6092,14 +6092,14 @@ async function run(): Promise<CommanderCommand> {
 		.description("Sign in to your CoStrict account")
 		.option(
 			"--email <email>",
-			"Pre-populate email address on the login page",
+			"Pre-populate email address on the login page (Anthropic OAuth only)",
 		)
-		.option("--sso", "Force SSO login flow")
+		.option("--sso", "Force SSO login flow (Anthropic OAuth only)")
 		.option(
 			"--console",
-			"Use Anthropic Console (API usage billing) instead of Claude subscription",
+			"Use Anthropic Console (API usage billing) instead of CoStrict",
 		)
-		.option("--claudeai", "Use Claude subscription (default)")
+		.option("--claudeai", "Use Claude subscription instead of CoStrict")
 		.action(
 			async ({
 				email,
