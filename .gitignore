@@ -17,7 +17,7 @@ src/utils/vendor/
 .claude/
 .codex/
 .omx/
-.omc/**/*.json
+.omc/
 .claude/
 .costrict/*.json
 
