@@ -51,6 +51,7 @@ type Props = {
   onSubmit: () => void
   onTabPrev?: () => void
   onTabNext?: () => void
+  autoSelectSecondsLeft?: number
   onRespondToClaude: () => void
   onFinishPlanInterview: () => void
   onImagePaste?: (
@@ -73,6 +74,7 @@ export function QuestionView({
   planFilePath,
   minContentHeight,
   minContentWidth,
+  autoSelectSecondsLeft,
   onUpdateQuestionState,
   onAnswer,
   onTextInputFocus,
@@ -262,7 +264,14 @@ export function QuestionView({
           answers={answers}
           hideSubmitTab={hideSubmitTab}
         />
-        <PermissionRequestTitle title={question.question} color={'text'} />
+        <Box flexDirection="row" gap={1} alignItems="flex-start">
+          <PermissionRequestTitle title={question.question} color={'text'} />
+          {autoSelectSecondsLeft !== undefined && (
+            <Text color="inactive" dimColor>
+              ({autoSelectSecondsLeft}s)
+            </Text>
+          )}
+        </Box>
 
         <Box flexDirection="column" minHeight={minContentHeight}>
           <Box marginTop={1}>

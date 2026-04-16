@@ -8,6 +8,7 @@ coverage
 .vscode
 *.suo
 *.lock
+*.bun-build
 *.exe
 src/utils/vendor/
 .tmp/
@@ -18,6 +19,7 @@ src/utils/vendor/
 .codex/
 .omx/
 .omc/
+security-review_result/
 .claude/
 .costrict/*.json
 

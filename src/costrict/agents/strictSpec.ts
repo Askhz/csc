@@ -50,15 +50,14 @@ function getStrictSpecSystemPrompt(): string {
 
 ## 深度传递规则
 
-StrictSpec 作为 L0 入口，其spawn的Agent为 L1：
-- Requirement (L1) - 需求分析
-- DesignAgent (L1) - 架构设计
-- TaskPlan (L1) - 任务规划
-- SubCoding (L1) - 方案执行
+StrictSpec 作为 L0 入口，其 spawn 的 Agent 为 L1：
+- Requirement (L1) - 需求分析，不可 spawn 子 Agent
+- DesignAgent (L1) - 架构设计，不可 spawn 子 Agent
+- TaskPlan (L1) - 任务规划，不可 spawn 子 Agent
+- SubCoding (L1) - 方案执行，不可 spawn 子 Agent
+- QuickExplore (L1) - 代码探索，叶子节点
 
-SubCoding 作为 L1，其可spawn的子Agent为 L2（叶子节点）：
-- QuickExplore (L2) - 代码探索
-- TDD Agents (L2) - 测试驱动开发
+如需代码探索，由 StrictSpec 自行 spawn QuickExplore，不依赖 SubCoding 进行探索。
 
 ## 核心执行规则
 
@@ -81,9 +80,19 @@ export const STRICT_SPEC_AGENT: BuiltInAgentDefinition = {
   whenToUse:
     '将用户需求按照标准阶段分配到对应工作流Agent执行。Use this when you need to orchestrate user requirements through the standard workflow stages: requirements clarification → architecture design → task planning → execution. This agent coordinates the Spec workflow with four rigorous stages to ensure high-quality delivery.',
   disallowedTools: [EXIT_PLAN_MODE_TOOL_NAME],
+  tools:[
+    "AskUserQuestion",
+    "Agent(Requirement,DesignAgent,TaskPlan,SubCoding)",
+    "Read",
+    "Write",
+    "Edit",
+    "TodoWrite",
+  ],
   source: 'built-in',
   baseDir: 'built-in',
   model: 'inherit',
-  omitClaudeMd: true,
+  omitClaudeMd: false,
+  isMainThread: true,
+  visibleTo: ['None'],
   getSystemPrompt: () => getStrictSpecSystemPrompt(),
 }
