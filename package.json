@@ -1,8 +1,8 @@
 {
   "name": "@costrict/csc",
-  "version": "4.0.5-3",
+  "version": "4.0.6",
 
-  "description": "CSC — 多模型终端 AI 编程助手，支持 Anthropic/OpenAI/Gemini/Grok 等多种 API 端点",
+  "description": "CSC — CoStrict多模型终端 AI 编程助手，支持 Anthropic/OpenAI/Gemini/Grok 等多种 API 端点",
   "type": "module",
   "author": "claude-code-best <claude-code-best@proton.me>",
   "repository": {
@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "@claude-code-best/mcp-chrome-bridge": "^2.0.7",
+    "undici": "^7.24.6",
     "ws": "^8.20.0",
     "yaml": "^2.8.3"
   },
@@ -189,7 +190,6 @@
     "turndown": "^7.2.2",
     "type-fest": "^5.5.0",
     "typescript": "^6.0.2",
-    "undici": "^7.24.6",
     "url-handler-napi": "workspace:*",
     "usehooks-ts": "^3.1.1",
     "vscode-jsonrpc": "^8.2.1",

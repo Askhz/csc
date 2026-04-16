@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.6] - 2026-04-16
+
+### 新功能
+
+- 去除了运行时bun的依赖
+
 ## [4.0.5] - 2026-04-15
 
 ### 新功能
