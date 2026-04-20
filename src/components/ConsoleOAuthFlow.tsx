@@ -477,43 +477,6 @@ function OAuthStatusMessage({
                   ),
                   value: 'gemini_api',
                 },
-                {
-                  label: (
-                    <Text>
-                      Claude account with subscription · <Text dimColor>Pro, Max, Team, or Enterprise</Text>
-                      {process.env.USER_TYPE === 'ant' && (
-                        <Text>
-                          {'\n'}
-                          <Text color="warning">[ANT-ONLY]</Text>{' '}
-                          <Text dimColor>
-                            Please use this option unless you need to login to a special org for accessing sensitive
-                            data (e.g. customer data, HIPI data) with the Console option
-                          </Text>
-                        </Text>
-                      )}
-                      {'\n'}
-                    </Text>
-                  ),
-                  value: 'claudeai',
-                },
-                {
-                  label: (
-                    <Text>
-                      Anthropic Console account · <Text dimColor>API usage billing</Text>
-                      {'\n'}
-                    </Text>
-                  ),
-                  value: 'console',
-                },
-                {
-                  label: (
-                    <Text>
-                      3rd-party platform · <Text dimColor>Amazon Bedrock, Microsoft Foundry, or Vertex AI</Text>
-                      {'\n'}
-                    </Text>
-                  ),
-                  value: 'platform',
-                },
               ]}
               onChange={value => {
                 if (value === 'costrict') {
@@ -616,18 +579,6 @@ function OAuthStatusMessage({
                     opusModel: process.env.GEMINI_DEFAULT_OPUS_MODEL ?? '',
                     activeField: 'base_url',
                   });
-                } else if (value === 'platform') {
-                  logEvent('tengu_oauth_platform_selected', {});
-                  setOAuthStatus({ state: 'platform_setup' });
-                } else {
-                  setOAuthStatus({ state: 'ready_to_start' });
-                  if (value === 'claudeai') {
-                    logEvent('tengu_oauth_claudeai_selected', {});
-                    setLoginWithClaudeAi(true);
-                  } else {
-                    logEvent('tengu_oauth_console_selected', {});
-                    setLoginWithClaudeAi(false);
-                  }
                 }
               }}
             />
