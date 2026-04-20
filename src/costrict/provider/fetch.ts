@@ -34,6 +34,10 @@ function getVersion(): string {
 
 const VERSION = getVersion()
 
+type CoStrictFetch = typeof fetch & {
+  preconnect?: (url: string | URL) => void
+}
+
 /**
  * 创建自定义 fetch 函数，用于 CoStrict API 请求
  *
@@ -43,7 +47,7 @@ const VERSION = getVersion()
  * 3. 注入 Authorization 和 CoStrict 特有 headers
  * 4. 反应性 401 错误恢复（自动重试一次）
  */
-export function createCoStrictFetch() {
+export function createCoStrictFetch(): CoStrictFetch {
   const costrictFetch = async (
     input: RequestInfo | URL,
     init?: RequestInit,
@@ -126,20 +130,21 @@ export function createCoStrictFetch() {
   }
   // Bun 原生支持 fetch.preconnect（共享连接池预热）
   // Node.js 没有 preconnect API，降级为 net.createConnection 做 TCP 预热
-  if (typeof fetch.preconnect === 'function') {
-    costrictFetch.preconnect = fetch.preconnect.bind(fetch)
-  } else {
-    costrictFetch.preconnect = (url: string | URL) => {
-      try {
-        const { hostname, port } = new URL(typeof url === 'string' ? url : url.toString())
-        const { createConnection } = require('node:net') as typeof import('node:net')
-        const sock = createConnection(Number(port) || 443, hostname, () => sock.destroy())
-        sock.setTimeout(3000, () => sock.destroy())
-        sock.on('error', () => sock.destroy())
-      } catch {
-        // 预连接失败不影响正常流程
-      }
-    }
-  }
-  return costrictFetch
+  const costrictFetchWithPreconnect = Object.assign(costrictFetch, {
+    preconnect: typeof fetch.preconnect === 'function'
+      ? fetch.preconnect.bind(fetch)
+      : (url: string | URL) => {
+          try {
+            const { hostname, port } = new URL(typeof url === 'string' ? url : url.toString())
+            const { createConnection } = require('node:net') as typeof import('node:net')
+            const sock = createConnection(Number(port) || 443, hostname, () => sock.destroy())
+            sock.setTimeout(3000, () => sock.destroy())
+            sock.on('error', () => sock.destroy())
+          } catch {
+            // 预连接失败不影响正常流程
+          }
+        }
+  })
+
+  return costrictFetchWithPreconnect as CoStrictFetch
 }

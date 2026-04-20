@@ -16,12 +16,7 @@ import type { Tools } from '../../Tool.js'
 import type { Options } from '../../services/api/claude.js'
 import OpenAI from 'openai'
 import { getProxyFetchOptions } from '../../utils/proxy.js'
-import { anthropicMessagesToOpenAI } from '../../services/api/openai/convertMessages.js'
-import {
-  anthropicToolsToOpenAI,
-  anthropicToolChoiceToOpenAI,
-} from '../../services/api/openai/convertTools.js'
-import { adaptOpenAIStreamToAnthropic } from '../../services/api/openai/streamAdapter.js'
+import { anthropicMessagesToOpenAI, anthropicToolsToOpenAI, anthropicToolChoiceToOpenAI, adaptOpenAIStreamToAnthropic } from '@ant/model-provider'
 import { normalizeMessagesForAPI } from '../../utils/messages.js'
 import { toolToAPISchema } from '../../utils/api.js'
 import { logForDebugging } from '../../utils/debug.js'
