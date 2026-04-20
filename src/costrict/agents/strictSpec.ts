@@ -77,7 +77,7 @@ StrictSpec 作为 L0 入口，其 spawn 的 Agent 为 L1：
 export const STRICT_SPEC_AGENT: BuiltInAgentDefinition = {
   agentType: 'StrictSpec',
   whenToUse:
-    '将用户需求按照标准阶段分配到对应工作流Agent执行。Use this when you need to orchestrate user requirements through the standard workflow stages: requirements clarification → architecture design → task planning → execution. This agent coordinates the Spec workflow with four rigorous stages to ensure high-quality delivery.',
+    '将用户需求按照标准阶段分配到对应工作流Agent执行。',
   tools:[
     "AskUserQuestion",
     "Agent(Requirement,DesignAgent,TaskPlan,SubCoding)",
