@@ -4,6 +4,7 @@ import { getAPIProvider } from '../utils/model/providers.js'
 import { updateSettingsForSource } from '../utils/settings/settings.js'
 import { getSettings_DEPRECATED } from '../utils/settings/settings.js'
 import { applyConfigEnvironmentVariables } from '../utils/managedEnv.js'
+import { getDefaultSonnetModel, getDefaultOpusModel, getDefaultHaikuModel } from '../utils/model/model.js'
 
 function getEnvVarForProvider(provider: string): string {
   switch (provider) {
@@ -41,6 +42,28 @@ const call: LocalCommandCall = async (args, context) => {
   if (!arg) {
     const current = getAPIProvider()
     return { type: 'text', value: `Current API provider: ${current}` }
+  }
+
+  // Helper function to set default model based on provider
+  const setDefaultModel = (provider: string) => {
+    const settings = getSettings_DEPRECATED() || {}
+    const currentModel = settings.model
+
+    // Only set default if no model has been explicitly set
+    if (!currentModel) {
+      let defaultModel: string
+      switch (provider) {
+        case 'anthropic':
+          defaultModel = getDefaultSonnetModel()
+          break
+        case 'openai':
+        case 'gemini':
+        case 'grok':
+        default:
+          defaultModel = getDefaultSonnetModel()
+      }
+      updateSettingsForSource('userSettings', { model: defaultModel })
+    }
   }
 
   // unset - clear settings, fallback to env vars
@@ -84,6 +107,7 @@ const call: LocalCommandCall = async (args, context) => {
     const hasUrl = !!mergedEnv.OPENAI_BASE_URL
     if (!hasKey || !hasUrl) {
       updateSettingsForSource('userSettings', { modelType: 'openai' })
+      setDefaultModel('openai')
       const missing = []
       if (!hasKey) missing.push('OPENAI_API_KEY')
       if (!hasUrl) missing.push('OPENAI_BASE_URL')
@@ -100,6 +124,7 @@ const call: LocalCommandCall = async (args, context) => {
     const hasKey = !!(mergedEnv.GROK_API_KEY || mergedEnv.XAI_API_KEY)
     if (!hasKey) {
       updateSettingsForSource('userSettings', { modelType: 'grok' })
+      setDefaultModel('grok')
       return {
         type: 'text',
         value: `Switched to Grok provider.\nWarning: Missing env var: GROK_API_KEY (or XAI_API_KEY)\nConfigure it via settings.json env or set manually.`,
@@ -114,6 +139,7 @@ const call: LocalCommandCall = async (args, context) => {
     // GEMINI_BASE_URL is optional (has default)
     if (!hasKey) {
       updateSettingsForSource('userSettings', { modelType: 'gemini' })
+      setDefaultModel('gemini')
       return {
         type: 'text',
         value: `Switched to Gemini provider.\nWarning: Missing env var: GEMINI_API_KEY\nConfigure it via /login or set manually.`,
@@ -135,6 +161,8 @@ const call: LocalCommandCall = async (args, context) => {
     delete process.env.CLAUDE_CODE_USE_COSTRICT
     // Update settings.json
     updateSettingsForSource('userSettings', { modelType: arg })
+    // Set default model for the provider
+    setDefaultModel(arg)
     // Ensure settings.env gets applied to process.env
     applyConfigEnvironmentVariables()
     return { type: 'text', value: `API provider set to ${arg}.` }

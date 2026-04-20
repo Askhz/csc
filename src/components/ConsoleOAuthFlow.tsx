@@ -13,6 +13,7 @@ import { OAuthService } from '../services/oauth/index.js'
 import { getOauthAccountInfo, validateForceLoginOrg } from '../utils/auth.js'
 import { logError } from '../utils/log.js'
 import { getSettings_DEPRECATED, updateSettingsForSource } from '../utils/settings/settings.js'
+import { getDefaultSonnetModel } from '../utils/model/model.js'
 import { Select } from './CustomSelect/select.js'
 import { Spinner } from './Spinner.js'
 import TextInput from './TextInput.js'
@@ -283,6 +284,8 @@ export function ConsoleOAuthFlow({
         }
         // Reset modelType to anthropic when using OAuth login
         updateSettingsForSource('userSettings', { modelType: 'anthropic' } as any)
+        // Set default model to sonnet for Anthropic provider
+        updateSettingsForSource('userSettings', { model: getDefaultSonnetModel() } as any)
         // Clear costrict env var to prevent conflicts
         delete process.env.CLAUDE_CODE_USE_COSTRICT
 
@@ -729,6 +732,8 @@ function OAuthStatusMessage({
             for (const [k, v] of Object.entries(env)) process.env[k] = v
             // Clear costrict env var to prevent conflicts when using custom platform
             delete process.env.CLAUDE_CODE_USE_COSTRICT
+            // Set default model to sonnet for this provider
+            updateSettingsForSource('userSettings', { model: getDefaultSonnetModel() } as any)
             setOAuthStatus({ state: 'success' })
             void onDone()
           }
@@ -951,6 +956,8 @@ function OAuthStatusMessage({
             for (const [k, v] of Object.entries(env)) process.env[k] = v
             // Clear costrict env var to prevent conflicts when using OpenAI
             delete process.env.CLAUDE_CODE_USE_COSTRICT
+            // Set default model to sonnet for this provider
+            updateSettingsForSource('userSettings', { model: getDefaultSonnetModel() } as any)
             setOAuthStatus({ state: 'success' })
             void onDone()
           }
@@ -1186,6 +1193,8 @@ function OAuthStatusMessage({
             for (const [k, v] of Object.entries(env)) process.env[k] = v
             // Clear costrict env var to prevent conflicts when using Gemini
             delete process.env.CLAUDE_CODE_USE_COSTRICT
+            // Set default model to sonnet for this provider
+            updateSettingsForSource('userSettings', { model: getDefaultSonnetModel() } as any)
             setOAuthStatus({ state: 'success' })
             void onDone()
           }
