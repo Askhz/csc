@@ -65,6 +65,14 @@ const envFeatures = Object.entries(process.env)
 const allFeatures = [...new Set([...DEFAULT_FEATURES, ...envFeatures])];
 const featureArgs = allFeatures.flatMap((name) => ["--feature", name]);
 
+// Dev mode should stay interactive for real terminal launches. Nested Bun
+// launches on Windows can lose TTY metadata, but we should not force
+// interactive mode when stdin is piped because that breaks headless usage like
+// `"hello" | bun run dev`.
+if (process.stdin.isTTY) {
+    process.env.CLAUDE_CODE_FORCE_INTERACTIVE ??= "1";
+}
+
 // If BUN_INSPECT is set, pass --inspect-wait to the child process
 const inspectArgs = process.env.BUN_INSPECT
     ? ["--inspect-wait=" + process.env.BUN_INSPECT]
@@ -77,7 +85,11 @@ const bunCmd = process.execPath;
 
 const result = Bun.spawnSync(
     [bunCmd, ...inspectArgs, "run", ...defineArgs, ...featureArgs, cliPath, ...process.argv.slice(2)],
-    { stdio: ["inherit", "inherit", "inherit"], cwd: projectRoot },
+    {
+        stdio: ["inherit", "inherit", "inherit"],
+        cwd: projectRoot,
+        env: process.env,
+    },
 );
 
 process.exit(result.exitCode ?? 0);
