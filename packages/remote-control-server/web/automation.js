@@ -277,7 +277,7 @@ export function getAutomationIndicator(state) {
         visible: true,
         label: "Autopilot",
         tone: "sleeping",
-        title: "Claude Code is in proactive mode and currently sleeping until the next wake-up or user message.",
+        title: "CoStrict is in proactive mode and currently sleeping until the next wake-up or user message.",
         iconVariant: "sleeping",
       };
     }
@@ -287,7 +287,7 @@ export function getAutomationIndicator(state) {
         visible: true,
         label: "Autopilot",
         tone: "proactive",
-        title: "Claude Code is in proactive mode and waiting for the next scheduled check-in.",
+        title: "CoStrict is in proactive mode and waiting for the next scheduled check-in.",
         iconVariant: "standby",
       };
     }
@@ -296,7 +296,7 @@ export function getAutomationIndicator(state) {
       visible: true,
       label: "Autopilot",
       tone: "proactive",
-      title: "Claude Code is in proactive mode and may continue working between user messages.",
+      title: "CoStrict is in proactive mode and may continue working between user messages.",
       iconVariant: "active",
     };
   }
@@ -306,7 +306,7 @@ export function getAutomationIndicator(state) {
       visible: true,
       label: "Autopilot",
       tone: "proactive",
-      title: "Claude Code is in proactive mode and may continue working between user messages.",
+      title: "CoStrict is in proactive mode and may continue working between user messages.",
       iconVariant: "active",
     };
   }
@@ -316,7 +316,7 @@ export function getAutomationIndicator(state) {
       visible: true,
       label: "Auto Run",
       tone: "auto-run",
-      title: "Claude Code is processing an automatic background trigger.",
+      title: "CoStrict is processing an automatic background trigger.",
       iconVariant: "active",
     };
   }
@@ -358,7 +358,7 @@ export function getAutomationActivity(state) {
 
 export function renderAutomationIcon(variant = "active", { className = "", decorative = true } = {}) {
   const classes = ["clawd-icon", `clawd-icon-${variant}`, className].filter(Boolean).join(" ");
-  const ariaAttrs = decorative ? 'aria-hidden="true"' : 'role="img" aria-label="Claude Code status"';
+  const ariaAttrs = decorative ? 'aria-hidden="true"' : 'role="img" aria-label="CoStrict status"';
 
   return `
     <span class="${classes}" ${ariaAttrs}>

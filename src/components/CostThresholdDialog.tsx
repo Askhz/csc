@@ -9,7 +9,7 @@ type Props = {
 export function CostThresholdDialog({ onDone }: Props): React.ReactNode {
   return (
     <Dialog
-      title="You've spent $5 on the Anthropic API this session."
+      title="You've spent $5 on the CoStrict API this session."
       onCancel={onDone}
     >
       <Box flexDirection="column">
