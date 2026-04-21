@@ -38,3 +38,7 @@ data
 .codex/skills/.system/**
 !.codex/prompts/
 !.codex/prompts/**
+
+.costrict
+.claude
+.tmp/
