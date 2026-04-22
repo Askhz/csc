@@ -433,9 +433,8 @@ export async function setup(
         // 预取模型列表，填充同步缓存
         const baseUrl = getCoStrictBaseURL(activeCreds.base_url)
         const models = await fetchCoStrictModels(baseUrl, activeCreds.access_token)
-        if (models.length > 0 && !process.env.COSTRICT_MODEL) {
-          process.env.COSTRICT_MODEL = models[0].id
-        }
+        // 模型列表已预取并缓存，不再自动设置 COSTRICT_MODEL 环境变量
+        // resolveCoStrictModel() 会直接透传用户配置的模型名
         process.env.CLAUDE_CODE_USE_COSTRICT = '1'
       } catch {
         // 初始化失败不阻断启动
