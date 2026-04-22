@@ -721,7 +721,7 @@ function TranscriptSearchBar({
 }
 
 const TITLE_ANIMATION_FRAMES = ['⠂', '⠐'];
-const TITLE_STATIC_PREFIX = '✳';
+const TITLE_STATIC_PREFIX = '';
 const TITLE_ANIMATION_INTERVAL_MS = 960;
 
 /**
