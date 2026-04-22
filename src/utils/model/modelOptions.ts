@@ -1,5 +1,4 @@
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
-import { getInitialMainLoopModel } from '../../bootstrap/state.js'
 import {
   isClaudeAISubscriber,
   isMaxSubscriber,
@@ -25,7 +24,6 @@ import {
   getDefaultHaikuModel,
   getDefaultMainLoopModelSetting,
   getMarketingNameForModel,
-  getUserSpecifiedModelSetting,
   isOpus1mMergeEnabled,
   getOpus46PricingSuffix,
   renderDefaultModelSetting,
@@ -542,45 +540,31 @@ export function getModelOptions(fastMode = false): ModelOption[] {
     }
   }
 
-  // Add custom model from either the current model value or the initial one
-  // if it is not already in the options.
-  let customModel: ModelSetting = null
-  const currentMainLoopModel = getUserSpecifiedModelSetting()
-  const initialMainLoopModel = getInitialMainLoopModel()
-  if (currentMainLoopModel !== undefined && currentMainLoopModel !== null) {
-    customModel = currentMainLoopModel
-  } else if (initialMainLoopModel !== null) {
-    customModel = initialMainLoopModel
-  }
-  if (customModel === null || options.some(opt => opt.value === customModel)) {
-    return filterModelOptionsByAllowlist(options)
-  } else if (customModel === 'opusplan') {
-    return filterModelOptionsByAllowlist([...options, getOpusPlanOption()])
-  } else if (customModel === 'opus' && getAPIProvider() === 'firstParty') {
-    return filterModelOptionsByAllowlist([
-      ...options,
-      getMaxOpusOption(fastMode),
-    ])
-  } else if (customModel === 'opus[1m]' && getAPIProvider() === 'firstParty') {
-    return filterModelOptionsByAllowlist([
-      ...options,
-      getMergedOpus1MOption(fastMode),
-    ])
-  } else {
-    // Try to show a human-readable label for known Anthropic models, with an
-    // upgrade hint if the alias now resolves to a newer version.
-    const knownOption = getKnownModelOption(customModel)
+  // Add ANTHROPIC_MODEL env var model as a custom option, but only for
+  // anthropic-compatible providers. settings.model is NOT added here.
+  const provider = getAPIProvider()
+  const envModel =
+    provider === 'firstParty' ||
+    provider === 'bedrock' ||
+    provider === 'vertex' ||
+    provider === 'foundry'
+      ? process.env.ANTHROPIC_MODEL
+      : undefined
+
+  if (envModel && !options.some(opt => opt.value === envModel)) {
+    const knownOption = getKnownModelOption(envModel)
     if (knownOption) {
       options.push(knownOption)
     } else {
       options.push({
-        value: customModel,
-        label: customModel,
-        description: 'Custom model',
+        value: envModel,
+        label: envModel,
+        description: 'Custom model (ANTHROPIC_MODEL)',
       })
     }
-    return filterModelOptionsByAllowlist(options)
   }
+
+  return filterModelOptionsByAllowlist(options)
 }
 
 /**
