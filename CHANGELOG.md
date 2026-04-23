@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.11] - 2026-04-23
+
+### 变更
+
+- **Bin**: bin 命令统一为 `csc`，移除 `ccb`、`ccb-bun`、`claude-code-best`
+
 ## [4.0.10] - 2026-04-23
 
 ### 修复
