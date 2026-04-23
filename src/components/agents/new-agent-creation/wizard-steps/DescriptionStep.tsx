@@ -44,7 +44,7 @@ export function DescriptionStep(): ReactNode {
 
   return (
     <WizardDialogLayout
-      subtitle="Description (tell Claude when to use this agent)"
+      subtitle="Description (tell CoStrict when to use this agent)"
       footerText={
         <Byline>
           <KeyboardShortcutHint shortcut="Type" action="enter text" />
@@ -65,7 +65,7 @@ export function DescriptionStep(): ReactNode {
       }
     >
       <Box flexDirection="column">
-        <Text>When should Claude use this agent?</Text>
+        <Text>When should CoStrict use this agent?</Text>
 
         <Box marginTop={1}>
           <TextInput

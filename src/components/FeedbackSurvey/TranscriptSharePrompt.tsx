@@ -40,8 +40,8 @@ export function TranscriptSharePrompt({
       <Box>
         <Text color="ansi:cyan">{BLACK_CIRCLE} </Text>
         <Text bold>
-          Can Anthropic look at your session transcript to help us improve
-          CoStrict?
+          Can the CoStrict team look at your session transcript to help us
+          improve CoStrict?
         </Text>
       </Box>
 

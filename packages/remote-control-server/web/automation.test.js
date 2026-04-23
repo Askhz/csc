@@ -96,7 +96,7 @@ describe("automation helpers", () => {
       visible: true,
       label: "Autopilot",
       tone: "proactive",
-      title: "Claude Code is in proactive mode and may continue working between user messages.",
+      title: "CoStrict is in proactive mode and may continue working between user messages.",
       iconVariant: "active",
     });
 
@@ -154,7 +154,7 @@ describe("automation helpers", () => {
       visible: true,
       label: "Autopilot",
       tone: "proactive",
-      title: "Claude Code is in proactive mode and waiting for the next scheduled check-in.",
+      title: "CoStrict is in proactive mode and waiting for the next scheduled check-in.",
       iconVariant: "standby",
     });
     expect(getAutomationActivity(state)).toEqual({
