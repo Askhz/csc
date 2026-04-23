@@ -124,7 +124,7 @@ export function LogoV2(): React.ReactNode {
   // In condensed mode (early-return below renders <CondensedLogo/>),
   // CondensedLogo's own useEffect handles the impression count. Skipping
   // here avoids double-counting since hooks fire before the early return.
-  const isCondensedMode = !hasReleaseNotes && !showOnboarding && !isEnvTruthy(process.env.CLAUDE_CODE_FORCE_FULL_LOGO);
+  const isCondensedMode = true;
 
   useEffect(() => {
     if (showGuestPassesUpsell && !showOnboarding && !isCondensedMode) {
@@ -149,7 +149,7 @@ export function LogoV2(): React.ReactNode {
   const modelDisplayName = truncate(fullModelDisplayName + effortSuffix, LEFT_PANEL_MAX_WIDTH - 20);
 
   // Show condensed logo if no new changelog and not showing onboarding and not forcing full logo
-  if (!hasReleaseNotes && !showOnboarding && !isEnvTruthy(process.env.CLAUDE_CODE_FORCE_FULL_LOGO)) {
+  if (true) {
     return (
       <>
         <CondensedLogo />

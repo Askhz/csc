@@ -437,7 +437,7 @@ const externalTips: Tip[] = [
   {
     id: 'desktop-app',
     content: async () =>
-      'Run CoStrict locally or remotely using the Claude desktop app: clau.de/desktop',
+      'Run CoStrict locally Or remotely using the CoStrict Web',
     cooldownSessions: 15,
     isRelevant: async () => getPlatform() !== 'linux',
   },
