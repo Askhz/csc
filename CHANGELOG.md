@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.12] - 2026-04-24
+
+### 变更
+
+- 版本号升级至 4.0.12
+
 ## [4.0.8] - 2026-04-23
 
 ### 新功能
