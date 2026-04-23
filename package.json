@@ -1,7 +1,7 @@
 {
-  "name": "claude-code-best",
-  "version": "4.0.8",
-  "description": "Reverse-engineered Anthropic Claude Code CLI — interactive AI coding assistant in the terminal",
+  "name": "@costrict/csc",
+  "version": "4.0.9",
+  "description": "costrict",
   "type": "module",
   "author": "claude-code-best <claude-code-best@proton.me>",
   "repository": {

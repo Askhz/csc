@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.9] - 2026-04-23
+
+### 变更
+
+- **Commands**: 移除 `desktop` 命令及相关注册
+- **UI**: `LogoV2` 强制使用 condensed 模式，跳过 release notes / onboarding 检测
+- **Tips**: 将 desktop app 提示文案更新为 CoStrict Web
+- **Package**: 包名改为 `@costrict/csc`，描述更新为 `costrict`
+
 ## [4.0.8] - 2026-04-17
 
 ### 新功能
